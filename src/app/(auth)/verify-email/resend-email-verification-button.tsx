@@ -15,17 +15,22 @@ export function ResendVerificationButton({ email }: { email: string }) {
     setError(null);
     setIsLoading(true);
 
-    const { error } = await authClient.sendVerificationEmail({
-      email,
-      callbackURL: "/email-verified",
-    });
+    try {
+      const { error } = await authClient.sendVerificationEmail({
+        email,
+        callbackURL: "/email-verified",
+      });
 
-    setIsLoading(false);
+      if (error) {
+        setError(error.message || "Something went wrong");
+        return;
+      }
 
-    if (error) {
-      setError(error.message || "Something went wrong");
-    } else {
       setSuccess("Verification email sent successfully");
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
