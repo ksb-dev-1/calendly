@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 
 import { useRouter } from "next/navigation";
 
@@ -25,6 +25,8 @@ import { ResetPasswordValues, resetPasswordSchema } from "@/lib/validation";
 export function ResetPasswordForm({ token }: { token: string }) {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   const form = useForm<ResetPasswordValues>({
@@ -52,14 +54,21 @@ export function ResetPasswordForm({ token }: { token: string }) {
 
     if (error) {
       setErrorMessage(error.message || "Something went wrong");
-    } else {
-      setSuccessMessage("Password has been reset. You can now sign in.");
-      setTimeout(() => router.push(ROUTES.SIGN_IN), 3000);
-      form.reset();
+      return;
     }
+
+    setSuccessMessage("Password has been reset. You can now sign in.");
+    setIsRedirecting(true); // keeps the button loading during the 3s wait
+    form.reset();
+
+    setTimeout(() => {
+      startTransition(() => {
+        router.push(ROUTES.SIGN_IN);
+      });
+    }, 3000);
   }
 
-  const loading = form.formState.isSubmitting;
+  const loading = form.formState.isSubmitting || isRedirecting || isPending;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">

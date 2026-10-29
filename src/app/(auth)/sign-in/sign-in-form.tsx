@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 
-// import { CustomLink } from "@/components/custom-link";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -42,6 +41,7 @@ export function SignInForm() {
   const [loadingProvider, setLoadingProvider] = useState<
     "google" | "github" | null
   >(null);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   const form = useForm<SignInValues>({
@@ -70,10 +70,15 @@ export function SignInForm() {
 
     if (error) {
       setErrorMessage(error.message || "Something went wrong");
-    } else {
-      toast.success("Signed in successfully");
-      router.push(ROUTES.DASHBOARD);
+      return;
     }
+
+    toast.success("Signed in successfully");
+
+    // Keeps isPending true until the dashboard has loaded
+    startTransition(() => {
+      router.push(ROUTES.DASHBOARD);
+    });
   }
 
   // Handle social sign-in
@@ -86,14 +91,14 @@ export function SignInForm() {
       callbackURL: ROUTES.DASHBOARD,
     });
 
+    // Only reset on error; on success the browser redirects away
     if (result?.error) {
       setErrorMessage(result.error.message ?? "Something went wrong");
+      setLoadingProvider(null);
     }
-
-    setLoadingProvider(null);
   }
 
-  const loading = form.formState.isSubmitting;
+  const loading = form.formState.isSubmitting || isPending;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
@@ -183,7 +188,7 @@ export function SignInForm() {
             {/* Sign in with google button */}
             <Button
               variant="outline"
-              disabled={loadingProvider !== null}
+              disabled={loadingProvider !== null || loading}
               onClick={() => handleSocialSignIn("google")}
               className="w-full"
             >
@@ -193,7 +198,7 @@ export function SignInForm() {
             {/* Sign in with github button */}
             <Button
               variant="outline"
-              disabled={loadingProvider !== null}
+              disabled={loadingProvider !== null || loading}
               onClick={() => handleSocialSignIn("github")}
               className="w-full"
             >

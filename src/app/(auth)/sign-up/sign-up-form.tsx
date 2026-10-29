@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 
-// import { CustomLink } from "@/components/custom-link";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -37,6 +36,7 @@ import { SignUpValues, signUpSchema } from "@/lib/validation";
 // ========================================
 export function SignUpForm() {
   const [error, setError] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
   const form = useForm<SignUpValues>({
@@ -66,13 +66,18 @@ export function SignUpForm() {
 
     if (error) {
       setError(error.message || "Something went wrong");
-    } else {
-      toast.success("Signed up successfully");
-      router.push(ROUTES.VERIFY_EMAIL);
+      return;
     }
+
+    toast.success("Signed up successfully");
+
+    // Keeps isPending true until the verify-email page has loaded
+    startTransition(() => {
+      router.push(ROUTES.VERIFY_EMAIL);
+    });
   }
 
-  const loading = form.formState.isSubmitting;
+  const loading = form.formState.isSubmitting || isPending;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-// import { CustomLink } from "@/components/custom-link";
 import Link from "next/link";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -53,12 +52,13 @@ export function ForgotPasswordForm() {
 
     if (error) {
       setErrorMessage(error.message || "Something went wrong");
-    } else {
-      setSuccessMessage(
-        "We've sent a password reset link to the email address you entered.",
-      );
-      form.reset();
+      return;
     }
+
+    setSuccessMessage(
+      "We've sent a password reset link to the email address you entered.",
+    );
+    form.reset();
   }
 
   const loading = form.formState.isSubmitting;
@@ -123,7 +123,7 @@ export function ForgotPasswordForm() {
             href="/sign-in"
             className="text-slate-600 dark:text-muted-foreground text-sm underline flex items-center gap-2"
           >
-            <MoveLeft size={12} /> Bcak to Sign in
+            <MoveLeft size={12} /> Back to Sign in
           </Link>
         </CardFooter>
       </Card>
