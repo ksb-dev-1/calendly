@@ -117,9 +117,9 @@ export function ResetPasswordForm({ token }: { token: string }) {
               />
             </FieldGroup>
 
-            {/* Send password reset link button */}
+            {/* Reset Button */}
             <ActionButton loading={loading} className="w-full mt-4">
-              Send password reset link
+              Reset
             </ActionButton>
           </form>
         </CardContent>
