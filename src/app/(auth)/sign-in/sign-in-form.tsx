@@ -105,7 +105,7 @@ export function SignInForm() {
       <Card className="max-w-sm w-full mx-auto">
         <CardHeader>
           <CardTitle className="text-lg font-bold">
-            Sign in to <span className="text-brand">Calendly</span>
+            Sign in to <span className="text-brand">CodeCache</span>
           </CardTitle>
           <CardDescription>
             Fill in the fields below to sign in to your account.

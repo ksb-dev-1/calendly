@@ -84,7 +84,7 @@ export function SignUpForm() {
       <Card className="max-w-sm w-full mx-auto">
         <CardHeader>
           <CardTitle className="text-lg font-bold">
-            Create your <span className="text-brand">Calendly</span> account
+            Create your <span className="text-brand">CodeCache</span> account
           </CardTitle>
           <CardDescription>
             Fill in the fields below to sign up to your account.

@@ -15,7 +15,7 @@ function NavbarLayout({ children }: { children: React.ReactNode }) {
     <div className="border-b h-16 w-full flex items-center justify-center">
       <nav className="flex items-center justify-between max-w-5xl w-full mx-auto px-2">
         <Link href="/" className="font-bold">
-          Home
+          CodeCache
         </Link>
         <div className="flex items-center gap-2">
           <ModeToggle />

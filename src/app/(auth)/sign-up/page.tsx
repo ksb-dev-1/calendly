@@ -3,9 +3,9 @@ import { Metadata } from "next";
 import { SignUpForm } from "./sign-up-form";
 
 export const metadata: Metadata = {
-  title: "Sign up - Calendly",
+  title: "Sign up - CodeCache",
   description:
-    "Create a Calendly account to find your next job or hire top talent.",
+    "Create a CodeCache account to find your next job or hire top talent.",
 };
 
 export default function SignUpPage() {

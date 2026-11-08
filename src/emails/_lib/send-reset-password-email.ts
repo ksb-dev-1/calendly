@@ -19,7 +19,7 @@ export async function sendResetPasswordEmail({
   await resend.emails.send({
     from,
     to,
-    subject: "Reset Calendly account password",
+    subject: "Reset CodeCache account password",
     react: ForgotPasswordEmail({
       url,
       name,

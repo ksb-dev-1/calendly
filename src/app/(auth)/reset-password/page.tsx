@@ -9,9 +9,9 @@ import { ROUTES } from "@/lib/navigation-paths";
 import { ResetPasswordForm } from "./reset-password-form";
 
 export const metadata: Metadata = {
-  title: "Reset Password - Calendly",
+  title: "Reset Password - CodeCache",
   description:
-    "Create a new password to securely access your Calendly account.",
+    "Create a new password to securely access your CodeCache account.",
 };
 
 async function GetToken({
