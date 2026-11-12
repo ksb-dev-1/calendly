@@ -8,6 +8,69 @@
       "when": 1792305751025,
       "tag": "0000_tricky_eternals",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794462649634,
+      "tag": "0001_medical_stellaris",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794463105824,
+      "tag": "0002_gifted_wolverine",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794463276071,
+      "tag": "0003_nostalgic_preak",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794463368805,
+      "tag": "0004_smiling_gunslinger",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794467804976,
+      "tag": "0005_free_felicia_hardy",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794468530266,
+      "tag": "0006_complete_sentry",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794468664826,
+      "tag": "0007_dizzy_pandemic",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794470925062,
+      "tag": "0008_hot_meggan",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1794471206700,
+      "tag": "0009_supreme_sasquatch",
+      "breakpoints": true
     }
   ]
 }
